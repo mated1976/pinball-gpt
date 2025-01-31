@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pinball Rules AI</title>
+    <script>
+        async function askQuestion() {
+            let question = document.getElementById("question").value;
+            let response = await fetch("/query", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ question: question })
+            });
+            let data = await response.json();
+            document.getElementById("response").innerHTML = data.answer;
+        }
+    </script>
+</head>
+<body>
+    <h1>Pinball Rules AI</h1>
+    <input type="text" id="question" placeholder="Ask about a pinball machine...">
+    <button onclick="askQuestion()">Ask</button>
+    <p id="response"></p>
+</body>
+</html>

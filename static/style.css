@@ -1,0 +1,119 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #121212;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    width: 100%;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+/* Main Container */
+.container {
+    width: 90%;
+    max-width: 450px;
+    background-color: #1e1e1e;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    min-height: auto;
+}
+
+/* Title Styling */
+h1 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #facc15;
+    text-align: center;
+}
+
+/* Input Box */
+input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 12px;
+    background-color: #333;
+    color: #fff;
+}
+
+/* Button */
+button {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    color: #121212;
+    background-color: #facc15;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #ffd700;
+}
+
+/* ✅ FINAL FIX: FORCE TEXT TO WRAP INSIDE RESPONSE */
+#response {
+    margin-top: 15px;
+    padding: 10px;
+    font-size: 14px;
+    background-color: #252525;
+    border-radius: 5px;
+    text-align: left;
+    
+    /* 🚀 ENSURE TEXT WRAPS */
+    white-space: normal !important; /* Forces wrapping */
+    word-wrap: break-word !important; /* Breaks long words */
+    overflow-wrap: break-word !important; /* Ensures text stays inside */
+    word-break: break-word !important; /* Ensures URLs break */
+
+    /* 🚀 PREVENT TEXT FROM SPILLING */
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    min-height: auto;
+    overflow: hidden;
+}
+
+/* ✅ FIX JSON TEXT WRAPPING */
+.response-text {
+    font-size: 14px;
+    line-height: 1.6;
+    white-space: normal !important; /* Removes pre-wrap behavior */
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    width: 100%;
+    display: block;
+}
+
+/* ✅ ENSURE LONG LINKS WRAP */
+#response a {
+    color: #facc15;
+    text-decoration: none;
+    display: inline-block;
+    max-width: 100%;
+    word-break: break-word !important;
+    overflow-wrap: anywhere;
+}
+
+#response a:hover {
+    text-decoration: underline;
+}
+
+/* Mobile Fix */
+@media (max-width: 480px) {
+    .container {
+        max-width: 90%;
+        padding: 15px;
+    }
+}

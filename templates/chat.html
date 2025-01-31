@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pinball Rules AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script>
+        async function askQuestion() {
+            let question = document.getElementById("question").value;
+            let responseBox = document.getElementById("response");
+
+            if (question.trim() === "") return;
+
+            responseBox.innerHTML = "Searching for rules... ⏳";
+
+            let response = await fetch("/query", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ question: question })
+            });
+
+            let data = await response.json();
+            responseBox.innerHTML = data.answer;
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            let inputField = document.getElementById("question");
+
+            inputField.addEventListener("keypress", function (event) {
+                if (event.key === "Enter") {
+                    event.preventDefault();
+                    askQuestion();
+                }
+            });
+
+            document.querySelectorAll(".example-query").forEach(function (example) {
+                example.addEventListener("click", function () {
+                    document.getElementById("question").value = this.innerText;
+                    askQuestion();
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Pinball Rules AI</h1>
+        <input type="text" id="question" placeholder="Type a pinball machine name...">
+        <button onclick="askQuestion()">Search</button>
+
+        <div class="examples">
+            <strong>Try these:</strong>
+            <ul>
+                <li class="example-query">Fish Tales</li>
+                <li class="example-query">Fish Tales strategy</li>
+                <li class="example-query">John Wick multiball</li>
+                <li class="example-query">The Walking Dead</li>
+                <li class="example-query">Space Shuttle skill shot</li>
+            </ul>
+        </div>
+
+        <div id="response"></div>
+    </div>
+</body>
+</html>
